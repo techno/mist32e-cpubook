@@ -5,12 +5,12 @@ SRC	= start.s uart.c hello.c
 HEAD	= uart.h
 ELF	= hello.elf
 BIN	= $(ELF:.elf=.bin)
-BIN	= $(ELF:.elf=.hex)
+HEX	= $(ELF:.elf=.hex)
 
-all:	$(BIN)
+all:	$(BIN) $(HEX)
 
 clean:
-	rm -f $(BIN) $(ELF)
+	rm -f $(BIN) $(HEX) $(ELF)
 
 .SUFFIXES:	.elf .bin
 .elf.bin:
