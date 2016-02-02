@@ -1,0 +1,17 @@
+#define OFFSET(ptr, offset) ((void *)((char *)ptr + offset))
+#define WORD_ADDR(addr) (addr << 2) 
+
+#define DEVICE_SCI_START WORD_ADDR(0x04000040)
+#define DEVICE_SCI_END   WORD_ADDR(0x04000044)
+
+#define SCI_TXD  WORD_ADDR(0)
+#define SCI_RXD  WORD_ADDR(1)
+#define SCI_CFG  WORD_ADDR(2)
+#define SCI_FLAG WORD_ADDR(3)
+
+#define SCI_TEN 1
+#define SCI_REN 2
+
+void uart_init(void);
+void uart_putc(int c);
+void uart_puts(char *str);
