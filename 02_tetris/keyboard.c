@@ -3,16 +3,16 @@
 
 unsigned int keyboard_get(void)
 {
-  unsigned int keycode, k;
+  unsigned int scancode, k;
   volatile unsigned int flag __attribute__ ((unused));
   unsigned int result = 0;
 
   while(1) {
     flag = *(volatile unsigned int *)OFFSET(DEVICE_KEYBOARD_START, KEYBOARD_FLAGR);
-    keycode = *(volatile unsigned int *)OFFSET(DEVICE_KEYBOARD_START, KEYBOARD_DATA);
+    scancode = *(volatile unsigned int *)OFFSET(DEVICE_KEYBOARD_START, KEYBOARD_DATA);
 
-    if(keycode & 0x100) {
-      k = keycode & 0xff;
+    if(scancode & 0x100) {
+      k = scancode & 0xff;
       result = (result << 8) | k;
 
       if(k == 0xe0 || k == 0xf0) {	
