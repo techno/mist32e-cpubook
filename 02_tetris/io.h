@@ -48,5 +48,5 @@ void uart_puts(char *str);
 #define DISPLAY_COLOR_GRAY   0xce79
 
 void display_clear(unsigned int color);
-void display_set_pixel(unsigned int x, unsigned int y, unsigned int color);
+void display_set_pixcel(unsigned int x, unsigned int y, unsigned int color);
 void display_rectangle(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int color);
