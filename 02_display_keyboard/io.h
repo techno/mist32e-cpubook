@@ -8,7 +8,7 @@
 #define KEYBOARD_DATA WORD_ADDR(0)
 #define KEYBOARD_FLAGR WORD_ADDR(1)
 
-unsigned int keyboard_get(void);
+unsigned int keyboard_get_scancode(void);
 
 /* SCI */
 #define DEVICE_SCI_START WORD_ADDR(0x04000040)

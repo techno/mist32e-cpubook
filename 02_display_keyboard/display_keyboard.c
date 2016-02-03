@@ -13,7 +13,7 @@ void main(void)
   display_clear(DISPLAY_COLOR_BLACK);
 
   while(1) {
-    switch(keyboard_get()) {
+    switch(keyboard_get_scancode()) {
     case 0xf01d: /* W */
       uart_puts("Change color: WHITE");
       display_rectangle(100, 100, 100, 100, DISPLAY_COLOR_WHITE);

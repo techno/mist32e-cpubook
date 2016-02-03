@@ -1,6 +1,6 @@
 #include "io.h"
 
-unsigned int keyboard_get(void)
+unsigned int keyboard_get_scancode(void)
 {
   unsigned int scancode, k;
   volatile unsigned int flag __attribute__ ((unused));
