@@ -1,5 +1,5 @@
 CC	= mist32e-elf-gcc
-CFLAGS	= -nostdlib -ffreestanding -std=gnu11 -Wall
+CFLAGS	= -nostdlib -ffreestanding -std=gnu11 -Wall -O3
 LIBGCC = `${CC} -print-libgcc-file-name`
 
 SRC	= start.s tetris.c uart.c display.c keyboard.c lib.c

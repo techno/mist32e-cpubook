@@ -8,6 +8,7 @@
 #define NUM_BLOCKS 7
 
 #define TILE_SIZE 20
+#define CLOCK_HZ 50000000
 
 enum tile {
   TILE_NONE,

@@ -1,4 +1,5 @@
 #include <stdbool.h>
+#include <limits.h>
 #include "tetris.h"
 #include "io.h"
 
@@ -193,18 +194,54 @@ void tiles_print_display(void)
   }
 }
 
+unsigned int get_timestamp(void)
+{
+  unsigned int time;
+
+  asm volatile ("srfrcr     \n\t"
+		"srfrclr %0" : "=r"(time));
+  return time;
+}
+
+unsigned int diff_timestamp(unsigned int prev, unsigned int now)
+{
+  if(now < prev) {
+    return UINT_MAX - (prev - now) + 1;
+  }
+  return now - prev;
+}
+
+enum key get_key(void)
+{
+  unsigned int code;
+
+  code = keyboard_get_scancode();
+  switch(code) {
+  case 0xE0F074: // move right
+    return KEY_RIGHT;
+    break;
+  case 0xE0F06B: // move left
+    return KEY_LEFT;
+    break;
+  case 0xE0F072: // move down
+    return KEY_DOWN;
+    break;
+  case 0xE0F075: // rotate
+    return KEY_ROTATE;
+    break;
+  default:
+    break;
+  }
+
+  return KEY_NONE;
+}
+
 void init(void)
 {
   int y, x;
-  unsigned int time;
 
   display_clear(DISPLAY_COLOR_BLACK);
-
-  /* get clocktime */
-  __asm__("srfrcr     \n\t"
-	  "srfrclr %0"
-	  : "=r"(time));
-  srand(time);
+  srand(get_timestamp());
 
   /* tiles init */
   for(x = 0; x < WIDTH; x++) {
@@ -225,9 +262,8 @@ void init(void)
 
 void main(void)
 {
-  unsigned int i;
+  unsigned int prev, now;
   bool move_fail;
-  enum key k;
 
   uart_init();
   uart_puts("Hello, TETRIS.");
@@ -235,21 +271,26 @@ void main(void)
   uart_puts("Press any key to start.");
 
   while(1) {
-    if(keyboard_get()) {
+    if(keyboard_get_scancode()) {
       break;
     }
   }
 
+  uart_puts("Start!");
   init();
-  
-  while(1) {
-    /* print tiles to terminal */
-    tiles_print_ch();
-    tiles_print_display();
 
-    for(i = 0; i < 10; i++) {
-      k = keyboard_get_timeout();
-      switch(k) {
+  now = get_timestamp();
+
+  while(1) {
+    /* print tiles */
+    tiles_print_display();
+    tiles_print_ch();
+    prev = now;
+
+    while(diff_timestamp(prev, now) < CLOCK_HZ) {
+      now = get_timestamp();
+
+      switch(get_key()) {
       case KEY_LEFT:
 	move_fail = block_move(0, -1);
 	break;
@@ -267,8 +308,8 @@ void main(void)
 	break;
       }
       if(!move_fail) {
-	tiles_print_ch();
 	tiles_print_display();
+	/*tiles_print_ch();*/
       }
     }
 
