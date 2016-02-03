@@ -8,21 +8,26 @@
 
 void main(void)
 {
+  uart_init();
   uart_puts("Hello, keyboard_display.");
-  display_clear(0x0000); /* BLACK */
+  display_clear(DISPLAY_COLOR_BLACK);
 
   while(1) {
     switch(keyboard_get()) {
     case 0xf01d: /* W */
+      uart_puts("Change color: WHITE");
       display_rectangle(100, 100, 100, 100, DISPLAY_COLOR_WHITE);
       break;
     case 0xf01c: /* A */
+      uart_puts("Change color: RED");
       display_rectangle(100, 100, 100, 100, DISPLAY_COLOR_RED);
       break;
     case 0xf01b: /* S */
+      uart_puts("Change color: GREEN");
       display_rectangle(100, 100, 100, 100, DISPLAY_COLOR_GREEN);
       break;
     case 0xf023: /* D */
+      uart_puts("Change color: BLUE");
       display_rectangle(100, 100, 100, 100, DISPLAY_COLOR_BLUE);
       break;
     default:
