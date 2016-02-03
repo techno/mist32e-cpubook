@@ -31,11 +31,11 @@ void uart_puts(char *str);
 #define DEVICE_DISPLAY_END   WORD_ADDR(0x0404b1c0)
 
 #define DISPLAY_CLR   WORD_ADDR(0x00000000)
-#define DISPLAY_PIXCEL WORD_ADDR(0x00000100)
+#define DISPLAY_PIXEL WORD_ADDR(0x00000100)
 
 #define DISPLAY_WIDTH  640
 #define DISPLAY_HEIGHT 480
 
 void display_clear(unsigned int color);
-void display_set_pixcel(unsigned int x, unsigned int y, unsigned int color);
+void display_set_pixel(unsigned int x, unsigned int y, unsigned int color);
 void display_rectangle(unsigned int x, unsigned int y, unsigned int w, unsigned int h, unsigned int color);
