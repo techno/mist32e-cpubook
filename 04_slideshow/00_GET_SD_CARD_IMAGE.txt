@@ -1,0 +1,6 @@
+MMC イメージの入手は以下の URL から。
+http://open-arch.org/static/book/mmc.img.gz
+
+ダウンロードしたファイルは、圧縮されています。
+以下のように解凍します。
+$ gunzip mmc.img.gz
