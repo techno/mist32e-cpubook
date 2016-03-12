@@ -1,4 +1,4 @@
-CC	= mist32e-elf-gcc
+CC	= mist32-elf-gcc
 CFLAGS	= -nostdlib -ffreestanding -std=gnu11 -Wall
 
 SRC	= start.s display_keyboard.c uart.c display.c keyboard.c
