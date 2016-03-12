@@ -5,7 +5,7 @@
 #define IDT_FLAGS_VALID 0x1
 #define IDT_FLAGS_ENABLE 0x2
 
-#define IDT_KEYBOARD_NUM 5
+#define IDT_KEYBOARD_NUM 4
 
 /* IDT Entry struct */
 typedef volatile struct _idt_entry {

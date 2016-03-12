@@ -11,8 +11,9 @@ volatile unsigned int nimg, prev_nimg;
 
 void __attribute__((interrupt)) int_keyboard(void)
 {
-  keyboard_get_scancode();
-  nimg++;
+  unsigned int c;
+  while((c = keyboard_get_scancode()) && c < 0xf000)
+    nimg++;
 }
 
 void main(void)

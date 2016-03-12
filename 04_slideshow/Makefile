@@ -3,7 +3,7 @@ CFLAGS	= -nostdlib -ffreestanding -std=gnu11 -Wall -O3
 LIBGCC = `${CC} -print-libgcc-file-name`
 
 SRC	= start.s slideshow.c uart.c display.c keyboard.c mmc.c interrupt.c
-HEAD	= io.h
+HEAD	= io.h interrupt.h
 ELF	= slideshow.elf
 BIN	= $(ELF:.elf=.bin)
 HEX	= $(ELF:.elf=.hex)

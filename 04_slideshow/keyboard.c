@@ -9,6 +9,7 @@ unsigned int keyboard_get_scancode(void)
   while(1) {
     flag = *(volatile unsigned int *)OFFSET(DEVICE_KEYBOARD_START, KEYBOARD_FLAGR);
     scancode = *(volatile unsigned int *)OFFSET(DEVICE_KEYBOARD_START, KEYBOARD_DATA);
+    uart_put_uint(scancode);
 
     if(scancode & 0x100) {
       k = scancode & 0xff;
