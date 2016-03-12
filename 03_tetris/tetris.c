@@ -217,17 +217,21 @@ enum key get_key(void)
 
   code = keyboard_get_scancode();
   switch(code) {
-  case 0xE0F074: // move right
-    return KEY_RIGHT;
+  case 0xf01d:   /* W */
+  case 0xE0F075: /* ^ UP */
+    return KEY_ROTATE;
     break;
-  case 0xE0F06B: // move left
+  case 0xf01c:   /* A */
+  case 0xE0F06B: /* <- LEFT */
     return KEY_LEFT;
     break;
-  case 0xE0F072: // move down
+  case 0xf01b:   /* S */
+  case 0xE0F072: /* DOWN */
     return KEY_DOWN;
     break;
-  case 0xE0F075: // rotate
-    return KEY_ROTATE;
+  case 0xf023:   /* D */
+  case 0xE0F074: /* -> RIGHT */
+    return KEY_RIGHT;
     break;
   default:
     break;

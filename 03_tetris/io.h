@@ -37,7 +37,7 @@ void uart_puts(char *str);
 #define DISPLAY_HEIGHT 480
 
 #define DISPLAY_COLOR_WHITE  0xffff
-#define DISPLAY_COLOR_BLACK  0
+#define DISPLAY_COLOR_BLACK  0x0000
 #define DISPLAY_COLOR_RED    0xf800
 #define DISPLAY_COLOR_GREEN  0x07e0
 #define DISPLAY_COLOR_BLUE   0x001f
